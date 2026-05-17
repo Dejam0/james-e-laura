@@ -95,8 +95,11 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;ba
 .fb-text .bot .aside{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(15px,1.4vw,20px);max-width:26ch;opacity:.88;padding-left:16px;border-left:1px solid rgba(201,169,110,.5);line-height:1.5}
 
 /* ── CHAPTER HEADING ── */
-.ch{padding:16vh 9vw 8vh;max-width:1400px;margin:0 auto}
-.ch .eyebrow{display:flex;align-items:center;gap:14px;color:var(--rose);margin-bottom:22px}
+.ch{padding:2vh 9vw 1vh;max-width:1400px;margin:0 auto}
+.ch.in-carousel{padding:0 8vw 2vh; text-align:left}
+.ch.in-carousel h2{font-size:clamp(24px, 3vw, 40px); margin-bottom: 5px}
+.ch.in-carousel .lede{margin-top:5px; font-size: 16px; opacity: 0.8}
+.ch .eyebrow{display:flex;align-items:center;gap:14px;color:var(--rose);margin-bottom:12px}
 .ch .eyebrow .bar{width:28px;height:1px;background:var(--rose)}
 .ch .eyebrow .sans{color:var(--rose);font-size:9px;letter-spacing:.5em}
 .ch h2{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(44px,6vw,100px);line-height:.94;letter-spacing:-.02em;color:var(--ink);max-width:18ch}
@@ -129,10 +132,10 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;ba
 .split.azure{background:linear-gradient(135deg,#c8d8dc 0%,#b8cdd4 100%)}
 
 /* ── FILM STRIP / CAROUSEL ── */
-.strip-wrap{background:var(--ink);position:relative}
-.strip-track{position:relative;height:60vh;background:var(--ink)}
-.strip-sticky{position:sticky;top:0;height:60vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
-.strip-header{padding:0 8vw 5vh;color:var(--gold-light);display:flex;align-items:baseline;gap:20px}
+.strip-wrap{background:var(--dark);position:relative;z-index:5}
+.strip-track{position:relative;height:120vh;background:var(--dark);overflow:visible}
+.strip-sticky{position:sticky;top:0;height:100vh;width:100%;overflow:hidden;display:flex;flex-direction:column;justify-content:center;z-index:10;background:var(--dark)}
+.strip-header{padding:0 8vw 1vh;color:var(--gold-light);display:flex;align-items:baseline;gap:20px}
 .strip-header h3{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(32px,4vw,64px);color:var(--white);letter-spacing:-.02em}
 .strip-header .sans{font-size:9px;color:var(--gold);opacity:.7}
 .strip-row{display:flex;align-items:center;gap:28px;padding:0 8vw;will-change:transform;flex-shrink:0}
@@ -142,9 +145,9 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;ba
 .strip-hole{width:14px;height:10px;border-radius:2px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.06);flex-shrink:0}
 
 .card{flex:0 0 auto;position:relative;overflow:hidden;background:#111;cursor:none}
-.card.port{width:26vw;height:68vh}
-.card.land{width:42vw;height:56vh}
-.card.sq{width:34vw;height:62vh}
+.card.port{width:22vw;height:50vh}
+.card.land{width:36vw;height:40vh}
+.card.sq{width:28vw;height:45vh}
 .card img,.card video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease,filter .4s ease}
 .card:hover img,.card:hover video{transform:scale(1.06)}
 /* per-card film effects */
@@ -159,14 +162,14 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;ba
 .strip-progress .fill{height:100%;background:linear-gradient(90deg,var(--rose),var(--gold));width:0%;transition:width .1s linear}
 
 /* ── PULL QUOTE ── */
-.quote-block{text-align:center;padding:16vh 10vw;position:relative;background:var(--parchment);overflow:hidden}
+.quote-block{text-align:center;padding:10vh 10vw;position:relative;background:var(--parchment);overflow:hidden}
 .quote-block::before{content:'\201C';position:absolute;top:-2vh;left:8vw;font-family:'Playfair Display',serif;font-size:clamp(160px,20vw,280px);color:var(--rose);opacity:.08;line-height:1;pointer-events:none}
 .quote-block blockquote{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(28px,4vw,56px);line-height:1.25;color:var(--ink);max-width:22ch;margin:0 auto;position:relative;z-index:1}
 .quote-block blockquote .hl{color:var(--rose)}
 .quote-block cite{display:block;margin-top:32px;font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.5em;text-transform:uppercase;color:var(--ink-muted)}
 
 /* ── EPILOGUE ── */
-#epilogue{padding:16vh 6vw 12vh;text-align:center;background:var(--dark);position:relative;overflow:hidden}
+#epilogue{padding:10vh 6vw 8vh;text-align:center;background:var(--dark);position:relative;overflow:hidden}
 #epilogue .pre{display:inline-flex;align-items:center;gap:14px;color:var(--gold);margin-bottom:28px}
 #epilogue .pre .bar{width:28px;height:1px;background:var(--gold)}
 #epilogue h2{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(72px,14vw,200px);line-height:.9;letter-spacing:-.02em;color:var(--white)}
@@ -194,13 +197,33 @@ footer span{font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.4em;tex
 
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
+  /* Disable custom cursor on mobile for better usability */
+  body{cursor:auto}
+  #cursor{display:none}
+
+  .ch{padding:4vh 6vw 2vh}
+  .ch h2{font-size:clamp(36px, 10vw, 48px)}
+  
   .split,.split.rev{grid-template-columns:1fr}
-  .split-media{min-height:60vw}
-  .card.port{width:72vw;height:58vh}
-  .card.land{width:84vw;height:48vh}
-  .card.sq{width:78vw;height:54vh}
-  .fb-text .bot{flex-direction:column;align-items:flex-start;gap:16px}
-  #epilogue .final-frame{width:92vw}
+  .split-text{padding:6vh 6vw; text-align:center; align-items:center}
+  .split-text p{max-width:100%}
+  .split-media{min-height:50vh}
+  
+  .strip-track{height:75vh} 
+  .strip-sticky{height:70vh; top: 15vh}
+  .ch.in-carousel{padding: 0 6vw 1vh}
+  .card.port{width:75vw;height:35vh}
+  .card.land{width:85vw;height:30vh}
+  .card.sq{width:80vw;height:32vh}
+  
+  .fb-text .bot{flex-direction:column;align-items:flex-start;gap:12px}
+  .fb-text .bot h2{font-size:clamp(32px, 8vw, 42px)}
+  
+  #hero-names{font-size:clamp(50px, 18vw, 80px)}
+  #hero-sub{font-size:18px; padding:0 10px}
+  
+  #epilogue h2{font-size:clamp(50px, 18vw, 90px)}
+  #epilogue .final-frame{width:100%; aspect-ratio:1/1}
 }
 </style>
 </head>
@@ -410,9 +433,9 @@ footer span{font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.4em;tex
 <!-- MEDIA INJECTED HERE -->
 <script>
 window._M = {
-  'el-1': { t: 'image', s: 'midias/WhatsApp Image 2026-05-17 at 03.21.01.jpeg' },
+  'el-1': { t: 'image', s: 'midias/WhatsApp Image 2026-05-17 at 03.21.02 (3).jpeg' },
   'el-2': { t: 'video', s: 'midias/WhatsApp Video 2026-05-17 at 03.21.08.mp4' },
-  'el-3': { t: 'video', s: 'midias/WhatsApp Video 2026-05-17 at 03.21.11.mp4' },
+  'el-3': { t: 'video', s: 'midias/WhatsApp Video 2026-05-17 at 05.09.53.mp4' },
   'el-4': { t: 'image', s: 'midias/WhatsApp Image 2026-05-17 at 03.21.02.jpeg' },
   'el-5': { t: 'image', s: 'midias/WhatsApp Image 2026-05-17 at 03.21.03.jpeg' },
   'el-final': { t: 'image', s: 'midias/WhatsApp Image 2026-05-17 at 03.25.05.jpeg' },
@@ -583,27 +606,34 @@ window._M = {
   function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
   function ease(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;}
 
-  let maxShift=-1;
+  let maxShift = -1;
   function getMax(){
-    if(maxShift<0) maxShift=Math.max(0, row.scrollWidth - window.innerWidth + 160);
+    if(maxShift < 0) maxShift = Math.max(0, row.scrollWidth - window.innerWidth + 160);
     return maxShift;
   }
+  
+  // Re-calculate on image load
+  window.addEventListener('load', () => { maxShift = -1; });
   window.addEventListener('resize',()=>{maxShift=-1;},{passive:true});
   setTimeout(()=>{maxShift=-1;},400);
   setTimeout(()=>{maxShift=-1;},1200);
 
-  const HOLD_IN=.08, HOLD_OUT=.80;
+  const HOLD_IN=0.01, HOLD_OUT=1.0;
+  let currentP = 0; // For smoothing
 
   function loop(){
     const r=track.getBoundingClientRect();
     const vh=window.innerHeight;
-    const total=r.height-vh;
-    const p=clamp((-r.top)/total,0,1);
+    const total=Math.max(1, r.height-vh);
+    const targetP=clamp((-r.top)/total,0,1);
+    
+    // Smoothing (Lerp): makes it feel "slower" and heavier
+    currentP += (targetP - currentP) * 0.008;
 
     let ap;
-    if(p<=HOLD_IN) ap=0;
-    else if(p>=HOLD_OUT) ap=1;
-    else ap=ease((p-HOLD_IN)/(HOLD_OUT-HOLD_IN));
+    if(currentP<=HOLD_IN) ap=0;
+    else if(currentP>=HOLD_OUT) ap=1;
+    else ap=(currentP-HOLD_IN)/(HOLD_OUT-HOLD_IN);
 
     const shift=ap*getMax();
     row.style.transform=`translateX(${-shift}px)`;
